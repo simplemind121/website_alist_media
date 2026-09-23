@@ -10,7 +10,7 @@
 | **License (module)** | LGPL-3 (see package `__manifest__.py`) |
 | **Repository** | Private deploy artifacts + release notes |
 
-Pin file: [`VERSION`](./VERSION) · Full history: [`CHANGELOG.md`](./CHANGELOG.md) · Deploy runbook: [`docs/DEPLOY.md`](./docs/DEPLOY.md) · Security: [`SECURITY.md`](./SECURITY.md)
+中文详情：[README.zh-CN.md](./README.zh-CN.md) · Pin file: [`VERSION`](./VERSION) · Full history: [`CHANGELOG.md`](./CHANGELOG.md) · Deploy runbook: [`docs/DEPLOY.md`](./docs/DEPLOY.md) · Security: [`SECURITY.md`](./SECURITY.md)
 
 ---
 
