@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# website_alist_media 一键部署脚本 (v5.1 — 适配 19.0.4.1.1 UX 小补丁；兼容 ≥19.0.4.1.0 合并文件集)
+# website_alist_media 一键部署脚本 (v5.2 — 适配 19.0.4.2.0 稳定性版；兼容 ≥19.0.4.1.1)
 #
 # 用法（本脚本和 website_alist_media.zip / .tar.gz 放在同一目录）：
 #   sudo bash deploy_website_alist_media.sh                   # 部署到生产 (prod-odoo)
@@ -23,7 +23,7 @@
 set -euo pipefail
 
 MODULE="website_alist_media"
-MIN_VERSION="19.0.4.1.1"   # 本脚本适配的最低包版本（19.0.4.1.1 = 无限滚动 + 默认 page_size 60）
+MIN_VERSION="19.0.4.2.0"   # 本脚本适配的最低包版本（19.0.4.2.0 = 巡检增稳 + poster/不可播提示 + BG 晚注册补丁）
 TARGET="prod"
 CONTAINER=""
 DB_NAME=""
