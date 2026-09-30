@@ -4,10 +4,10 @@
 
 | Version | Supported |
 |---------|-----------|
-| 19.0.4.2.x | Yes (current) |
-| 19.0.4.1.x | Security fixes only until upgraded |
-| 19.0.3.x | Legacy; upgrade recommended |
-| &lt; 19.0.3 | No |
+| 19.0.4.3.x | Yes (current) |
+| 19.0.4.2.x | Security fixes only until upgraded |
+| 19.0.4.1.x | No — contains an AccessError for website designers, fixed in 19.0.4.3.0 |
+| &lt; 19.0.4.1 | No |
 
 ## Reporting a vulnerability
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# website_alist_media 一键部署脚本 (v5.2 — 适配 19.0.4.2.0 稳定性版；兼容 ≥19.0.4.1.1)
+# website_alist_media 一键部署脚本 (v5.2 — 适配 19.0.4.3.0 显示区域工具；兼容 ≥19.0.4.1.1)
 #
 # 用法（本脚本和 website_alist_media.zip / .tar.gz 放在同一目录）：
 #   sudo bash deploy_website_alist_media.sh                   # 部署到生产 (prod-odoo)
@@ -23,7 +23,7 @@
 set -euo pipefail
 
 MODULE="website_alist_media"
-MIN_VERSION="19.0.4.2.0"   # 本脚本适配的最低包版本（19.0.4.2.0 = 巡检增稳 + poster/不可播提示 + BG 晚注册补丁）
+MIN_VERSION="19.0.4.1.1"   # 本脚本适配的最低包版本（19.0.4.1.1 = 无限滚动 + 默认 page_size 60）
 TARGET="prod"
 CONTAINER=""
 DB_NAME=""
@@ -343,6 +343,11 @@ anchor html_editor/static/src/main/media/media_plugin.js "media_dialog_extra_tab
 anchor website/static/src "loadReplaceBackgroundVideo" "背景视频对话框（AList 背景视频入口）"
 anchor website/static/src "websiteBackgroundVideoPlugin" "背景视频插件注册名"
 anchor website/static/src/interactions/video/background_video.js "appendBgVideo" "前台背景视频渲染（直链 <video> 播放）"
+anchor html_builder/static/src/core/utils.js "export class BaseOptionComponent" "侧栏选项组件基类（显示区域工具）"
+anchor html_builder/static/src/core/utils.js "export function useDomState" "侧栏选项状态钩子（显示区域工具）"
+anchor html_builder/static/src/utils/option_sequence.js "export function after" "选项排序 after()（显示区域工具）"
+anchor html_builder/static/src/utils/option_sequence.js "IMAGE_TOOL" "图片工具选项序号（显示区域工具）"
+anchor html_editor/static/src/main/media/media_dialog/media_dialog.js "element.classList.add(...this.props.media.classList)" "替换时类名继承（显示区域工具保留依赖此行为）"
 if [ "$COMPAT_WARN" = "1" ]; then
   warn "Odoo 内部代码与适配版本不同，建议先部署到 staging 验证（--target staging）。"
 fi

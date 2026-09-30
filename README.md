@@ -4,11 +4,11 @@
 
 | Field | Value |
 |------|--------|
-| **Latest release** | [`v19.0.4.2.0`](https://github.com/simplemind121/website_alist_media/releases/tag/v19.0.4.2.0) |
+| **Latest release** | [`v19.0.4.3.2`](https://github.com/simplemind121/website_alist_media/releases/tag/v19.0.4.3.2) |
 | **Module name** | `website_alist_media` |
 | **Odoo** | 19 Community / Enterprise (website builder) |
 | **License (module)** | LGPL-3 (see package `__manifest__.py`) |
-| **Repository** | Private deploy artifacts + release notes |
+| **Repository** | Public deploy artifacts + release notes |
 
 中文详情：[README.zh-CN.md](./README.zh-CN.md) · Pin file: [`VERSION`](./VERSION) · Full history: [`CHANGELOG.md`](./CHANGELOG.md) · Deploy runbook: [`docs/DEPLOY.md`](./docs/DEPLOY.md) · Security: [`SECURITY.md`](./SECURITY.md)
 
@@ -49,7 +49,7 @@ Historical zips may remain for rollback. **Canonical current version = `VERSION`
 
 ---
 
-## Feature matrix (current: 19.0.4.2.0)
+## Feature matrix (current: 19.0.4.3.2)
 
 | Area | Status |
 |------|--------|
@@ -71,7 +71,7 @@ Historical zips may remain for rollback. **Canonical current version = `VERSION`
 
 ```bash
 # 1) Download Release assets (or clone this repo)
-#    website_alist_media-19.0.4.2.0.zip
+#    website_alist_media-19.0.4.3.2.zip
 #    deploy_website_alist_media.sh
 
 # 2) Same directory on the VPS
@@ -80,12 +80,34 @@ sudo ./deploy_website_alist_media.sh
 # optional: sudo ./deploy_website_alist_media.sh --target staging
 
 # 3) Hard-refresh browser (Ctrl+Shift+R)
-# 4) Verify: __websiteAlistMedia.version === "19.0.4.2.0"
+# 4) Verify: __websiteAlistMedia.version === "19.0.4.3.2"
 ```
 
 Full procedure, rollback, and checks: **[docs/DEPLOY.md](./docs/DEPLOY.md)**.
 
 ---
+
+## Release 19.0.4.3.2 (summary)
+
+Safety fixes on top of **19.0.4.3.1**. No feature removal; `-u` upgrade, no data migration.
+
+1. **Uploads never overwrite** — an existing `a.jpg` makes the upload land as `a-1.jpg` (the dialog says so); if existence cannot be checked, nothing is uploaded
+2. **Usage index completeness** — Odoo 19 product body (`description_ecommerce`) and cover images (`cover_properties` of blog, event, course) are now scanned
+3. **Secret Reference guard** — a pasted token is rejected on save; *Test Connection* warns when the referenced environment variable is not set
+4. Menu path text corrected to **Website → AList Media**
+
+## Release 19.0.4.3.1 (summary)
+
+Fix: AList images were squashed/stretched in blocks that cap image height (product list,
+gallery, team, carousel). Inserted images no longer carry `width`/`height` attributes, and a
+zero-specificity rule neutralises them on images inserted by earlier versions — no content edit needed.
+
+## Release 19.0.4.3.0 (summary)
+
+**Display area** option for AList images (frame ratio, fill, focal point) in the website editor
+sidebar. Pure CSS (`aspect-ratio`, `object-fit`, `object-position`) — the file is never modified,
+reset removes exactly what the option set. Needed because Odoo's crop tool refuses cross-origin images.
+Also fixes an AccessError for website designers opening a media source.
 
 ## Release 19.0.4.2.0 (summary)
 
@@ -106,7 +128,7 @@ Odoo-style five-segment versions: `19.0.<minor>.<patch>.<hotfix>` within series 
 | Change type | Example bump | Rule |
 |-------------|--------------|------|
 | Breaking / parallel product line | `19.0.5.0.0` | Avoid while 4.x is marked stable |
-| Compatible feature set | `19.0.4.2.0` | Additive; `-u` upgrade |
+| Compatible feature set | `19.0.4.3.1` | Additive; `-u` upgrade |
 | UX / small fix | `19.0.4.1.1` | Patch only |
 
 **Upgrade:** always `-u website_alist_media` via the deploy script. Do not unpack two trees as the same module name.
